@@ -2,10 +2,13 @@
 <html>
 <head>
     <meta name="description" content="Découvrez tout les projets des jeunes reporters environnements du collège de l'aigle ! "> 
-    <link rel="apple-touch-icon" href="images/slime.png">
+    <!--logos-->
+	<link rel="apple-touch-icon" href="{% static 'images/logo.png' %}">
+	<link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
+	
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>JRE - Collège de l'aigle  </title>
+    <title>{{ title }}  </title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	
        <link rel="stylesheet" id="compiled.css-css" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css?ver=4.4.0" type="text/css" media="all">
@@ -51,7 +54,7 @@ h4.marge {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link waves-effect waves-light" href="http://lgdclefilm.pythonanywhere.com/">Accueil <span class="sr-only">(current)</span></a>
+                    <a class="nav-link waves-effect waves-light" href="http://jreaigle.pythonanywhere.com/">Accueil <span class="sr-only">(current)</span></a>
                 </li>
                
 				        <!-- Dropdown -->
@@ -69,8 +72,13 @@ h4.marge {
             </ul>
             <ul class="navbar-nav nav-flex-icons">
                 <li class="nav-item">
-                    	
+                  <a class="nav-link waves-effect waves-light" href="#">{{ user.username }}</a>	
                 </li>
+				{% if user.is_authenticated %}
+				<li class="nav-item active">
+                    <a class="nav-link waves-effect waves-light" href="/admin/logout">Déconnexion</a>
+                </li>
+				{% endif %}
             </ul>
         </div>
     </nav>
@@ -80,6 +88,7 @@ h4.marge {
 <br>
 <br>
 <br>
+
 {% block content %}
             {% endblock %}
 
