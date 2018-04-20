@@ -104,11 +104,15 @@ LOGIN_REDIRECT_URL = '/backoffice/'
 LOGIN_URL = '/'
 TEMPLATE_DIRS = (
     BASE_DIR + '/templates/',
+	'blog/templates',
 )
+TEMPLATE_LOADERS = [
+     'django.template.loaders.filesystem.loader'
+]
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-fr'
 
 TIME_ZONE = 'Europe/Paris'
 
