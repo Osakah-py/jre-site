@@ -50,7 +50,7 @@
 }
     textarea {
     height: 460;
-	width: 1800;
+	width: 110%;
 }
 	</style>
 	<style>
@@ -97,10 +97,14 @@ h4.marge {
                 </li>
             </ul>
             <ul class="navbar-nav nav-flex-icons">
+               {% if user.is_authenticated %} 
+			   <li class="nav-item">
+                 <a href="{% url 'post_new' %}" class="nav-link waves-effect waves-light"><i class="fa fa-plus"></i></a>
+		     </li>
                 <li class="nav-item">
                   <a class="nav-link waves-effect waves-light" href="#">{{ user.username }}</a>	
                 </li>
-				{% if user.is_authenticated %}
+				
 				<li class="nav-item active">
                     <a class="nav-link waves-effect waves-light" href="/admin/logout">Déconnexion</a>
                 </li>

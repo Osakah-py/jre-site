@@ -2,7 +2,11 @@
 {% load staticfiles %}
 
   {% block content %}
-<div class="marge">
+
+<div align="right">
+        <a class="btn btn-default waves-effect waves-light" href="{% url 'post_edit' pk=post.pk %}"><i class="fa fa-pencil"></i></a>
+		</div>
+		<div class="marge">
         {% if post.published_date %}
             <div class="date">
                 {{ post.published_date }}
