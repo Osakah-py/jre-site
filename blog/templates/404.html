@@ -2,10 +2,9 @@
 {% load staticfiles %}
 
   {% block content %}
-   <h4 class="marge">Jeunes reporters environnements</h4>
-<p class="marge">Découvrez tout les projets des jeunes reporters du collège de l'Aigle !
-<br>Toutes les infos, tout l’actus ? C’est ici ! Et en plus il y aura prochainement les vidéos.</p>
-
+   <h1 class="marge">404</h1>
+<p class="marge">Oups ! On dirait que cette page n'existe pas ou plus !
+<br>Regardez nos projets !</p>
 <!--Carousel Wrapper-->
   <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
 
@@ -109,7 +108,7 @@
                 <strong>Découvrez notre vélo rechargeant les appareils électroniques en pédalants.</strong>
               </p>
 
-              <a target="_blank" href="/velo_électrique" class="btn btn-outline-white btn-lg">Lire
+              <a target="_blank" href="https://mdbootstrap.com/bootstrap-tutorial/" class="btn btn-outline-white btn-lg">Lire
                 <i class="fa fa-arrow-right ml-2"></i>
               </a>
             </div>
@@ -150,7 +149,7 @@
         <div class="carousel-item active">
             <div class="col-md-4">
                 <div class="card">
-                    <img class="img-fluid" src="{{ post.image.url }}" alt="Card image cap">
+                    <img class="img-fluid" src="{% static 'images/jre2017.png' %}" alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">{{ post.title }}</h4>
                         <p class="card-text">{{ post.text|linebreaksbr }}</p>

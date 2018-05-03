@@ -3,9 +3,11 @@
 
   {% block content %}
 
+ {% if user.is_authenticated %}
 <div align="right">
         <a class="btn btn-default waves-effect waves-light" href="{% url 'post_edit' pk=post.pk %}"><i class="fa fa-pencil"></i></a>
 		</div>
+		{% endif %}
 		<div class="marge">
         {% if post.published_date %}
             <div class="date">
@@ -13,6 +15,7 @@
             </div>
         {% endif %}
         <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <center><img src="{{ post.image.url }}" width="auto" height="370"></center>
+		<p>{{ post.text|linebreaksbr }}</p>
     </div>
 {% endblock %}
