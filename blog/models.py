@@ -4,6 +4,7 @@ from django.utils import timezone
 class Post(models.Model):
     auteur = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200, verbose_name="titre")
+    image = models.ImageField(upload_to = 'post/', default='jre2017.png')
     text = models.TextField()
     created_date = models.DateTimeField(
             default=timezone.now)
