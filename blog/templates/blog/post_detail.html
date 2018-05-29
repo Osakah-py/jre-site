@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load staticfiles %}
+{ %  load  bbcode_tags  % }
 
   {% block content %}
 
@@ -16,6 +17,6 @@
         {% endif %}
         <h1>{{ post.title }}</h1>
         <center><img src="{{ post.image.url }}" width="auto" height="370"></center>
-		<p>{{ post.text|linebreaksbr }}</p>
+		<p>{{ post.text.rendered|linebreaksbr }}</p>
     </div>
 {% endblock %}

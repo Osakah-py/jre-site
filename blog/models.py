@@ -1,11 +1,12 @@
 from django.db import models
 from django.utils import timezone
+from precise_bbcode.fields import BBCodeTextField
 
 class Post(models.Model):
     auteur = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200, verbose_name="titre")
     #image = models.ImageField(upload_to = 'post/', default='jre2017.png')
-    text = models.TextField()
+    text = BBCodeTextField()
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
