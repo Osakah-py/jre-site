@@ -18,5 +18,9 @@
         <h1>{{ post.title }}</h1>
         <center><img src="{{ post.image.url }}" width="auto" height="370"></center>
 		<p>{{ post.text.rendered|linebreaksbr }}</p>
+		<div class="date">
+                Rédiger par : {{ post.auteur.first_name }} {{ post.auteur.last_name }}
+            </div>
+		
     </div>
 {% endblock %}

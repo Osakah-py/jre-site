@@ -5,7 +5,7 @@ from precise_bbcode.fields import BBCodeTextField
 class Post(models.Model):
     auteur = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200, verbose_name="titre")
-    #image = models.ImageField(upload_to = 'post/', default='jre2017.png')
+    image = models.FileField(upload_to = 'post/', default='jre2017.png')
     text = BBCodeTextField()
     created_date = models.DateTimeField(
             default=timezone.now)
