@@ -1,0 +1,50 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{ %  load  bbcode_tags  % }
+
+  {% block content %}
+<br>
+<br>
+<br>
+ {% if user.is_authenticated %}
+<div align="right">
+        <a class="btn btn-default waves-effect waves-light" href="{% url 'description_edit' pk=description.pk %}"><i class="fa fa-pencil"></i></a>
+		</div>
+		{% endif %}
+		<div class="marge">
+        {{ description.corp.rendered }}
+            </div>
+<br> <h2><i class="fa fa-newspaper-o" aria-hidden="true"></i> News du Groupe</h2>		
+<!--Carousel Wrapper-->
+<div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+{% for post in posts %}
+     {% if post.categorie.nom == "Gaspillage" %}
+        <!--{{ post.title }} slide-->
+        <div class="carousel-item active">
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="img-fluid" src="{{ post.image.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ post.title }}</h4>
+                        <p class="card-text">{{ post.text|truncatewords_html:10 }}</p>
+                        <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-success waves-effect waves-light">Lire la suite &gt;</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--/.{{ post.title }} slide-->
+	
+	{% endif %}
+{% endfor %}		
+
+    </div>
+    <!--/.Slides-->
+
+</div>
+<!--/.Carousel Wrapper-->
+    </div>
+{% endblock %}

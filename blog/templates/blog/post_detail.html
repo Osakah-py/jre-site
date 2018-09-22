@@ -3,7 +3,9 @@
 { %  load  bbcode_tags  % }
 
   {% block content %}
-
+<br>
+<br>
+<br>
  {% if user.is_authenticated %}
 <div align="right">
         <a class="btn btn-default waves-effect waves-light" href="{% url 'post_edit' pk=post.pk %}"><i class="fa fa-pencil"></i></a>
@@ -19,7 +21,7 @@
         <center><img src="{{ post.image.url }}" width="auto" height="370"></center>
 		<p>{{ post.text.rendered|linebreaksbr }}</p>
 		<div class="date">
-                Rédiger par : {{ post.auteur.first_name }} {{ post.auteur.last_name }}
+                Rédigé par : {{ post.auteur.first_name }} {{ post.auteur.last_name }}
             </div>
 		
     </div>

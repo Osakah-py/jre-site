@@ -2,6 +2,18 @@
 {% load staticfiles %}
 
   {% block content %}
+<br>
+<br>
+<br>
+{% if user.is_authenticated %}
+
+{% else %}
+<div class="text-center">
+
+    <a href="connexion" class="btn btn-success btn-rounded my-3 waves-effect waves-light"><i class="fa fa-user mr-1"></i> Se Connecter</a>
+
+</div>
+{% endif %}
    <h4 class="marge">Jeunes reporters environnements</h4>
 <p class="marge">Découvrez tout les projets des jeunes reporters du collège de l'Aigle !
 <br>Toutes les infos, tout l’actus ? C’est ici ! Et en plus il y aura prochainement les vidéos.</p>

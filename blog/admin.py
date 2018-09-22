@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Categorie
+from .models import Post, Categorie, Descriptions
 
 class PostAdmin(admin.ModelAdmin):
    list_display   = ('title', 'auteur', 'published_date')
@@ -12,3 +12,4 @@ class CategorieAdmin(admin.ModelAdmin):
 admin.site.site_header = 'JRE - Administration'
 admin.site.register(Post, PostAdmin)
 admin.site.register(Categorie, CategorieAdmin)
+admin.site.register(Descriptions)

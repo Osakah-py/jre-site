@@ -25,3 +25,10 @@ class Categorie(models.Model):
 
     def __str__(self):
          return self.nom
+
+class Descriptions(models.Model):
+     title = models.CharField(max_length=200, verbose_name="titre")
+     corp = BBCodeTextField(verbose_name="texte")
+
+     def __str__(self):
+        return self.title
