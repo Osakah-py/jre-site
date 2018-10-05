@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from precise_bbcode.fields import BBCodeTextField
+from django.utils.safestring import mark_safe
 
 class Post(models.Model):
     auteur = models.ForeignKey('auth.User', on_delete=models.CASCADE)
@@ -22,7 +23,8 @@ class Post(models.Model):
 
 class Categorie(models.Model):
     nom = models.CharField(max_length=30)
-
+    color = models.CharField(max_length=30, help_text=mark_safe('Consultez la liste des couleur possible <a href="../../../../../documentation#color">ici</a>'))
+    icon = models.CharField(max_length=30, help_text=mark_safe('Consultez la liste des logo possible <a href="../../../../../documentation#Icon">ici</a>'))
     def __str__(self):
          return self.nom
 

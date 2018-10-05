@@ -9,7 +9,7 @@ from .forms import PostForm, ConnexionForm, DescriptionForm
 
 def post_list(request):
     titre="JRE - Collège de l'aigle"
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, 'blog/post_list.html', {'posts': posts, 'title':titre})	
 	
 def authentification(request):
@@ -31,7 +31,7 @@ def authentification(request):
 	
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    titre= str(post.title)
+    titre= "JRE - "+str(post.title)
     return render(request, 'blog/post_detail.html', {'post': post, 'title':titre})	
 
 def post_new(request):
@@ -42,6 +42,7 @@ def page_not_found_view(request):
      return render(request,'blog/404.html')
 
 def post_new(request):
+    titre= "JRE - Nouvel article"
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
@@ -52,35 +53,48 @@ def post_new(request):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
-    return render(request, 'blog/post_edit.html', {'form': form})
+    return render(request, 'blog/post_edit.html', {'form': form, 'title':titre})
 	
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    titre= "JRE - "+str(post.title)+" - edition"
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
-            post.auteur = request.user
             post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/post_edit.html', {'form': form})
+    return render(request, 'blog/post_edit.html', {'form': form, 'title':titre})
 	
 def gaspillage(request):
     titre="JRE - Groupe : gaspillage"
+    groupe="Gaspillage"
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     description = get_object_or_404(Descriptions, title="gaspillage")
-    return render(request, 'blog/gaspillage.html', {'title':titre, 'description':description, 'posts': posts})
+    return render(request, 'blog/groupe.html', {'title':titre, 'description':description, 'posts': posts, 'groupe' : groupe})
+	
+def velo(request):
+    titre="JRE - Groupe : gaspillage"
+    groupe="Gaspillage"
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    description = get_object_or_404(Descriptions, title="vélo")
+    return render(request, 'blog/groupe.html', {'title':titre, 'description':description, 'posts': posts, 'groupe' : groupe})
 	
 def description_edit(request, pk):
     post = get_object_or_404(Descriptions, pk=pk)
     if request.method == "POST":
-        form = DescriptionForm(request.POST)
+        form = DescriptionForm(request.POST, instance=post)
         if form.is_valid():
-            post = form.save()
+            post = form.save(commit=False)
+            post.save()
             return redirect('gaspillage')
     else:
         form = DescriptionForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+	
+def color(request):
+    titre= "JRE Documentation"
+    return render(request, 'blog/color.html', {'title':titre})	
