@@ -82,21 +82,29 @@ h4.marge {
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link waves-effect waves-light" href="http://jreaigle.pythonanywhere.com/">Accueil <span class="sr-only">(current)</span></a>
+                {% if title == "JRE - Collège de l'aigle" %}
+				<li class="nav-item active">
+				{% else %}
+				<li class="nav-item">
+				{% endif %}
+                    <a class="nav-link waves-effect waves-light" href="/">Accueil <span class="sr-only">(current)</span></a>   <!-- Accueil -->
                 </li>
                
 				        <!-- Dropdown -->
                <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Groupes</a>
                 <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item waves-effect waves-light" href="/gaspillage">Le Gaspillage</a>
-                    <a class="dropdown-item waves-effect waves-light" href="/velo_électrique">Vélo électrique</a>
-                    <a class="dropdown-item waves-effect waves-light" href="/armure_solaire">Armure solaire</a>
+                    <a class="dropdown-item waves-effect waves-light" href="/Gaspillage">Le Gaspillage</a>
+                    <a class="dropdown-item waves-effect waves-light" href="/vélo">Vélo électrique</a>
+                    <a class="dropdown-item waves-effect waves-light" href="/panneau solaire">Armure solaire</a>
                 </div>
             </li>
-			<li class="nav-item">
-                    <a class="nav-link waves-effect waves-light" href="#">A propos</a>
+			{% if title == "JRE - A propos" %}
+			<li class="nav-item active">
+				{% else %}
+				<li class="nav-item">
+				{% endif %}
+                    <a class="nav-link waves-effect waves-light" href="/a_propos">A propos</a> <!-- A propos -->
                 </li>
             </ul>
             <ul class="navbar-nav nav-flex-icons">

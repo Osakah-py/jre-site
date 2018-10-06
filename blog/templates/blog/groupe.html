@@ -23,7 +23,7 @@
           <!-- News -->
           <div class="row">
      {% for post in posts %}
-     {% if post.categorie.nom == "Gaspillage" %}
+     {% if post.categorie.nom == groupe %}
             <!-- Colonne -->
             <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
                  <div class="rounded z-depth-2 mb-4">
@@ -31,7 +31,7 @@
                 </div>
 
               <!-- Groupe -->
-              <p><a href="#!" class="{{ post.categorie.color }}-text"><h6 class="font-weight-bold mb-3"><i class="{{ post.categorie.icon }} pr-2"></i>{{ post.categorie.nom }}</h6></a></p>
+              <p><a href="/{{ post.categorie.nom }}" class="{{ post.categorie.color }}-text"><h6 class="font-weight-bold mb-3"><i class="{{ post.categorie.icon }} pr-2"></i>{{ post.categorie.nom }}</h6></a></p>
               <!-- Post title -->
               <h4 class="font-weight-bold mb-3"><strong>{{ post.title }}</strong></h4>
               <!-- Post data -->
@@ -40,7 +40,7 @@
 			  <hr>
               <p class="dark-grey-text">{{ post.text|truncatewords_html:10 }}</p>
               <!-- Read more button -->
-              <a class="btn btn-{{ post.categorie.color }} btn btn-md waves-effect waves-light">Lire La suite</a>
+              <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-{{ post.categorie.color }} btn btn-md waves-effect waves-light">Lire La suite</a>
 
             </div>
             <!--.\ Colonne news -->

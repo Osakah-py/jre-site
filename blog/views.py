@@ -77,11 +77,23 @@ def gaspillage(request):
     return render(request, 'blog/groupe.html', {'title':titre, 'description':description, 'posts': posts, 'groupe' : groupe})
 	
 def velo(request):
-    titre="JRE - Groupe : gaspillage"
-    groupe="Gaspillage"
+    groupe="vélo"
+    titre="JRE - Groupe : "+groupe
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     description = get_object_or_404(Descriptions, title="vélo")
     return render(request, 'blog/groupe.html', {'title':titre, 'description':description, 'posts': posts, 'groupe' : groupe})
+	
+def armure_solaire(request):
+    groupe="panneau solaire"
+    titre="JRE - Groupe : "+groupe
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    description = get_object_or_404(Descriptions, title="armure_solaire")
+    return render(request, 'blog/groupe.html', {'title':titre, 'description':description, 'posts': posts, 'groupe' : groupe})
+
+def propos(request):
+    titre="JRE - A propos"
+    description = get_object_or_404(Descriptions, title="A propos")
+    return render(request, 'blog/propos.html', {'title':titre, 'description':description})
 	
 def description_edit(request, pk):
     post = get_object_or_404(Descriptions, pk=pk)
@@ -90,7 +102,7 @@ def description_edit(request, pk):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect('gaspillage')
+            return redirect(post.title)
     else:
         form = DescriptionForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})

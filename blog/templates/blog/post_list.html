@@ -53,7 +53,7 @@
                 <strong>Nous luttons contre le gaspillage dans note établissement.</strong>
               </p>
 
-              <a target="_blank" href="/gaspillage" class="btn btn-outline-white btn-lg">Voir
+              <a target="_blank" href="/Gaspillage" class="btn btn-outline-white btn-lg">Voir
                 <i class="fa fa-fire ml-2"></i>
               </a>
             </div>
@@ -87,7 +87,7 @@
                 <strong>Nous créons une armure capable de récuperer l'énergie solaire...</strong>
               </p>
 
-              <a target="_blank" href="/armure_solaire" class="btn btn-outline-white btn-lg">Découvrir
+              <a target="_blank" href="/panneau solaire" class="btn btn-outline-white btn-lg">Découvrir
                 <i class="fa fa-graduation-cap ml-2"></i>
               </a>
             </div>
@@ -121,7 +121,7 @@
                 <strong>Découvrez notre vélo rechargeant les appareils électroniques en pédalants.</strong>
               </p>
 
-              <a target="_blank" href="/velo_électrique" class="btn btn-outline-white btn-lg">Lire
+              <a target="_blank" href="/vélo" class="btn btn-outline-white btn-lg">Lire
                 <i class="fa fa-arrow-right ml-2"></i>
               </a>
             </div>
@@ -164,7 +164,7 @@
                 </div>
 
               <!-- Groupe -->
-              <p><a href="#!" class="{{ post.categorie.color }}-text"><h6 class="font-weight-bold mb-3"><i class="{{ post.categorie.icon }} pr-2"></i>{{ post.categorie.nom }}</h6></a></p>
+              <p><a href="/{{ post.categorie.nom }}" class="{{ post.categorie.color }}-text"><h6 class="font-weight-bold mb-3"><i class="{{ post.categorie.icon }} pr-2"></i>{{ post.categorie.nom }}</h6></a></p>
               <!-- Post title -->
               <h4 class="font-weight-bold mb-3"><strong>{{ post.title }}</strong></h4>
               <!-- Post data -->
@@ -173,7 +173,7 @@
 			  <hr>
               <p class="dark-grey-text">{{ post.text|truncatewords_html:10 }}</p>
               <!-- Read more button -->
-              <a class="btn btn-{{ post.categorie.color }} btn btn-md waves-effect waves-light">Lire La suite</a>
+              <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-{{ post.categorie.color }} btn btn-md waves-effect waves-light">Lire La suite</a>
 
             </div>
             <!--.\ Colonne news -->
