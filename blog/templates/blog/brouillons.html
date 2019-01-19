@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+
+  {% block content %}
+<br>
+<br>
+<br>
+
+   <h4 class="marge">Jeunes reporters environnements</h4>
+<p class="marge">Retrouvez ici tout les post en attente</p>
+
+<div class="marge">
+<br> <h2><i class="fa fa-clock-o" aria-hidden="true"></i> Brouillons</h2>
+
+ <div class="text-center my-5">
+          <!-- News -->
+          <div class="row">
+     {% for post in posts %}
+            <!-- Colonne -->
+            <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
+                 <div class="rounded z-depth-2 mb-4">
+                <img class="img-fluid" src="{{ post.image.url }}" alt="Image introuvable">
+
+                </div>
+
+              <!-- Groupe -->
+              <p><a href="/{{ post.categorie.nom }}" class="{{ post.categorie.color }}-text"><h6 class="font-weight-bold mb-3"><i class="{{ post.categorie.icon }} pr-2"></i>{{ post.categorie.nom }}</h6></a></p>
+              <!-- Post title -->
+              <h4 class="font-weight-bold mb-3"><strong>{{ post.title }}</strong></h4>
+              <!-- Post data -->
+              <p>Article de <a class="font-weight-bold">{{ post.auteur.first_name }} {{ post.auteur.last_name }}</a>, {{ post.created_date.day }}/{% if post.created_date.month < 10 %}0{% endif %}{{ post.created_date.month }}/{{ post.created_date.year }}</p>
+              <!-- Excerpt -->
+			  <hr>
+              <p class="dark-grey-text">{{ post.text|truncatewords_html:10 }}</p>
+              <!-- Read more button -->
+              <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-{{ post.categorie.color }} btn btn-md waves-effect waves-light">Lire La suite</a>
+            </div>
+            </div>
+            <!--.\ Colonne news -->
+{% endfor %}	
+    
+
+    </div>
+	</div>
+	</div>
+{% endblock %}

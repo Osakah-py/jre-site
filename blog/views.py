@@ -32,11 +32,30 @@ def authentification(request):
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     titre= "JRE - "+str(post.title)
-    return render(request, 'blog/post_detail.html', {'post': post, 'title':titre})	
+    info = False
+    warning = False      
+    if request.method == "POST":
+        if post.public == False :
+            post.public = True
+            post.save()
+            info = True
+        else:
+            post.public = False
+            post.save()
+            warning = True      
+    else :
+        info = False
+        warning = False 
+    return render(request, 'blog/post_detail.html', {'post': post, 'title':titre, 'info':info, 'warning':warning})	
 
 def post_new(request):
     form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
+
+def brouillons(request):
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    posts = posts.filter(public=False)
+    return render(request, 'blog/brouillons.html', {'posts':posts})
 
 def page_not_found_view(request):
      return render(request,'blog/404.html')
@@ -83,11 +102,11 @@ def velo(request):
     description = get_object_or_404(Descriptions, title="vélo")
     return render(request, 'blog/groupe.html', {'title':titre, 'description':description, 'posts': posts, 'groupe' : groupe})
 	
-def armure_solaire(request):
+def armuresolaire(request):
     groupe="panneau solaire"
     titre="JRE - Groupe : "+groupe
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    description = get_object_or_404(Descriptions, title="armure_solaire")
+    description = get_object_or_404(Descriptions, title="armuresolaire")
     return render(request, 'blog/groupe.html', {'title':titre, 'description':description, 'posts': posts, 'groupe' : groupe})
 
 def propos(request):

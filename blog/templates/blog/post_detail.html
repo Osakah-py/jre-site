@@ -3,12 +3,29 @@
 { %  load  bbcode_tags  % }
 
   {% block content %}
+  {% if info %}
+  <script type="text/javascript"> window.onload = function () { toastr.info('Post publié avec succés !'); }; </script> 
+  {% endif %}
+    {% if warning %}
+  <script type="text/javascript"> window.onload = function () { toastr.warning('Vous venez de rendre privée ce post !'); }; </script> 
+  {% endif %}
 <br>
 <br>
 <br>
+
  {% if user.is_authenticated %}
-<div align="right">
+<div align="right">{% if user.is_staff %}
+        {% if post.public == False %}
+		
+		<form method="POST" enctype="multipart/form-data" class="post-form">{% csrf_token %}
+		<button type="submit" class="btn btn-primary">Rendre Publique <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+		
+		{% else %}
+		<form method="POST" enctype="multipart/form-data" class="post-form">{% csrf_token %}
+		<button type="submit" class="btn btn-danger">Ne plus rendre publique <i class="fa fa-times" aria-hidden="true"></i></button>		
+		{% endif %}{% endif %}
         <a class="btn btn-default waves-effect waves-light" href="{% url 'post_edit' pk=post.pk %}"><i class="fa fa-pencil"></i></a>
+		
 		</div>
 		{% endif %}
 		<div class="marge">

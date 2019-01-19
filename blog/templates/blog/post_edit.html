@@ -5,12 +5,20 @@
 {% endblock %} -->
 
 {% block content %}
+
 <br>
 <div class="marge">
+ {% if user.is_authenticated %}
     <h1>New post</h1>
     <form method="POST" enctype="multipart/form-data" class="post-form">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+    
 	</div>
+{% else %}
+<br>
+<br>
+<h1>Vous devez être conecté pour acceder à cette page !</h1>
+{% endif %}
+</form>
 {% endblock %}

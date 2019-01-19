@@ -51,7 +51,12 @@
                     <strong>Connexion</strong>
                   </h3>
                   <hr>
-
+{% if user.is_authenticated %}
+<div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <p>Vous êtes déja connecté retourner à l'acceuil pour continuer. Bonne Navigation sur notre site web !</p>
+            </div>
+{% else %}
 <form method="POST" enctype="multipart/form-data" class="post-form">{% csrf_token %}
         {{ form.as_p }}
         <div class="text-center">
@@ -61,7 +66,7 @@
 {% if error %}
 <p><strong><span style="color:red">Utilisateur inconnu ou mauvais de mot de passe.<span></strong></p>
 {% endif %}
-
+{% endif %} 
                 <!-- Form -->
 
               </div>
